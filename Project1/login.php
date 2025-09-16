@@ -54,5 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="password" required><br><br>
         <button type="submit">Đăng nhập</button>
     </form>
+
+    <p>Chưa có tài khoản? <a href="user/register.php">Đăng ký ngay</a></p>
 </body>
 </html>
