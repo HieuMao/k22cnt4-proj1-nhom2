@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Chuyển hướng theo role
         if ($user['role'] === 'admin') {
-            header("Location: admin.php");
+            header("Location: adminpages/admin.php");
         } else {
             header("Location: index.php");
         }
