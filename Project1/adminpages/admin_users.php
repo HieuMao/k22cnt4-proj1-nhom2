@@ -1,7 +1,6 @@
 <?php
 include 'admin_header.php';
 
-// Chỉ cho admin truy cập
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
@@ -9,79 +8,78 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 
 include '../connect.php';
 
-// Lấy danh sách người dùng
 $sql = "SELECT id, username, role, created_at FROM users ORDER BY created_at DESC";
 $result = $mysqli->query($sql) or die("Lỗi SQL: " . $mysqli->error);
-
 ?>
-<!DOCTYPE html>
-<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Quản lý người dùng</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #f5f6fa;
+        margin: 20px;
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+    th {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        color: #fff;
+        font-weight: 600;
+    }
+    tr:hover {
+        background: #f1f1f1;
+    }
+    .delete-btn {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #e74c3c;
+        color: #fff;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.2s, background 0.3s;
+    }
+    .delete-btn:hover {
+        transform: scale(1.05);
+        background: #c0392b;
+    }
+</style>
 
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+<h2>Quản lý người dùng</h2>
 
-        th {
-            background: #333;
-            color: #fff;
-        }
-
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        .delete-btn {
-            color: red;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .delete-btn:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-
-<body>
-    <main>
-        <h2>Quản lý người dùng</h2>
-        <table border="1" cellpadding="8" cellspacing="0">
-            <tr>
-                <th>ID</th>
-                <th>Tên đăng nhập</th>
-                <th>Vai trò</th>
-                <th>Ngày tạo</th>
-                <th>Hành động</th>
-            </tr>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?= $row['id'] ?></td>
-                    <td><?= htmlspecialchars($row['username']) ?></td>
-                    <td><?= $row['role'] ?></td>
-                    <td><?= $row['created_at'] ?></td>
-                    <td>
-                        <a href="delete_user.php?id=<?= $row['id'] ?>"
-                            onclick="return confirm('Bạn có chắc muốn xóa người dùng này?')">Xóa</a>
-                    </td>
-
-                </tr>
-            <?php endwhile; ?>
-        </table>
-
-    </main>
-</body>
-
-</html>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tên đăng nhập</th>
+        <th>Vai trò</th>
+        <th>Ngày tạo</th>
+        <th>Hành động</th>
+    </tr>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= htmlspecialchars($row['username']) ?></td>
+            <td><?= $row['role'] ?></td>
+            <td><?= $row['created_at'] ?></td>
+            <td>
+                <a href="delete_user.php?id=<?= $row['id'] ?>" 
+                   class="delete-btn"
+                   onclick="return confirm('Bạn có chắc muốn xóa người dùng này?')">Xóa</a>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</table>

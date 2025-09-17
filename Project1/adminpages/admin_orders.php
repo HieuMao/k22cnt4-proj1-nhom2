@@ -2,7 +2,6 @@
 require '../connect.php';
 include 'admin_header.php';
 
-// Lấy danh sách đơn hàng (JOIN với user để biết ai đặt)
 $sql = "SELECT o.id, o.customer_name, o.phone, o.address, o.total, o.created_at, u.username
         FROM orders o
         LEFT JOIN users u ON o.user_id = u.id
@@ -10,9 +9,52 @@ $sql = "SELECT o.id, o.customer_name, o.phone, o.address, o.total, o.created_at,
 $result = $mysqli->query($sql);
 ?>
 
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #f5f6fa;
+        margin: 20px;
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+    th {
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        color: #fff;
+        font-weight: 600;
+    }
+    tr:hover {
+        background: #f1f1f1;
+    }
+    a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+    a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+</style>
+
 <h2>Quản lý đơn hàng</h2>
 
-<table border="1" cellpadding="8" cellspacing="0" width="100%">
+<table>
     <tr>
         <th>ID</th>
         <th>Khách hàng</th>
