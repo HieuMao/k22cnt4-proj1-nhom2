@@ -1,8 +1,26 @@
 <?php
 require 'connect.php';
+
+// Lấy danh mục để hiển thị filter
+$cat_sql = "SELECT id, name FROM categories ORDER BY name ASC";
+$cat_result = $mysqli->query($cat_sql);
+
+// Lấy điều kiện lọc & tìm kiếm
+$where = "WHERE 1=1"; // an toàn hơn
+if (!empty($_GET['category_id'])) {
+    $cat_id = (int)$_GET['category_id']; // ép int
+    $where .= " AND p.category_id = $cat_id";
+}
+if (!empty($_GET['keyword'])) {
+    $keyword = $mysqli->real_escape_string($_GET['keyword']);
+    $where .= " AND p.name LIKE '%$keyword%'";
+}
+
+// Lấy danh sách sản phẩm theo filter
 $sql = "SELECT p.id, p.name, p.price, p.image, c.name AS category
         FROM products p
         JOIN categories c ON p.category_id = c.id
+        $where
         ORDER BY p.created_at DESC";
 $result = $mysqli->query($sql);
 ?>
@@ -14,9 +32,13 @@ $result = $mysqli->query($sql);
 <title>Sản phẩm – Project1</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* riêng cho grid sản phẩm */
 .container{max-width:1200px;margin:40px auto;padding:0 20px;}
 .container h2{text-align:center;font-size:2rem;margin-bottom:30px;font-weight:600;}
+.filter-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:10px;}
+.filter-bar form{display:flex;gap:10px;}
+.filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid #ccc;border-radius:6px;}
+.filter-bar button{padding:8px 18px;background:#b8860b;border:none;border-radius:6px;color:#fff;font-weight:600;cursor:pointer;}
+.filter-bar button:hover{background:#a9740b;}
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:25px;}
 .product{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);
         text-align:center;padding:18px 15px 25px;transition:.2s;}
@@ -35,6 +57,26 @@ $result = $mysqli->query($sql);
 
 <div class="container">
     <h2>Tất cả sản phẩm</h2>
+
+    <!-- Thanh lọc và tìm kiếm -->
+    <div class="filter-bar">
+        <form method="GET">
+            <select name="category_id">
+                <option value="">-- Tất cả danh mục --</option>
+                <?php if($cat_result): while($cat=$cat_result->fetch_assoc()): ?>
+                    <option value="<?= $cat['id']; ?>" 
+                        <?= (!empty($_GET['category_id']) && $_GET['category_id']==$cat['id'])?'selected':''; ?>>
+                        <?= htmlspecialchars($cat['name']); ?>
+                    </option>
+                <?php endwhile; endif; ?>
+            </select>
+            <input type="text" name="keyword" placeholder="Tìm sản phẩm..." 
+                   value="<?= isset($_GET['keyword'])?htmlspecialchars($_GET['keyword']):''; ?>">
+            <button type="submit">Lọc</button>
+        </form>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
     <div class="products">
         <?php if($result && $result->num_rows): ?>
             <?php while($row = $result->fetch_assoc()): ?>
@@ -54,7 +96,7 @@ $result = $mysqli->query($sql);
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p style="grid-column:1/-1;text-align:center;">Chưa có sản phẩm nào!</p>
+            <p style="grid-column:1/-1;text-align:center;">❌ Không tìm thấy sản phẩm phù hợp!</p>
         <?php endif; ?>
     </div>
 </div>

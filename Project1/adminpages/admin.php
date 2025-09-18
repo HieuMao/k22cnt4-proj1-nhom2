@@ -1,5 +1,33 @@
-<?php include 'admin_header.php'; ?>
+<?php
+include 'admin_header.php';
+require '../connect.php'; // kết nối database
 
+// Lấy tổng số sản phẩm
+$product_count = 0;
+$res = $mysqli->query("SELECT COUNT(*) AS total FROM products");
+if ($res && $row = $res->fetch_assoc()) {
+    $product_count = $row['total'];
+}
+
+// Lấy tổng số đơn hàng
+$order_count = 0;
+$res = $mysqli->query("SELECT COUNT(*) AS total FROM orders");
+if ($res && $row = $res->fetch_assoc()) {
+    $order_count = $row['total'];
+}
+
+// Lấy tổng số người dùng
+$user_count = 0;
+$res = $mysqli->query("SELECT COUNT(*) AS total FROM users");
+if ($res && $row = $res->fetch_assoc()) {
+    $user_count = $row['total'];
+}
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Admin</title>
 <style>
     body {
         font-family: 'Roboto', sans-serif;
@@ -42,19 +70,24 @@
         margin: 0;
     }
 </style>
+</head>
+<body>
 
-<h2>Dashboard</h2>
+<h2>📊 Dashboard</h2>
 <div class="dashboard">
     <div class="card">
         <h3>Tổng sản phẩm</h3>
-        <p>100 sản phẩm</p>
+        <p><?= $product_count ?> sản phẩm</p>
     </div>
     <div class="card">
         <h3>Tổng đơn hàng</h3>
-        <p>50 đơn hàng</p>
+        <p><?= $order_count ?> đơn hàng</p>
     </div>
     <div class="card">
         <h3>Tổng người dùng</h3>
-        <p>200 người dùng</p>
+        <p><?= $user_count ?> người dùng</p>
     </div>
 </div>
+
+</body>
+</html>
