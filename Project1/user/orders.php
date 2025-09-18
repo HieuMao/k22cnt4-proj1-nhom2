@@ -23,12 +23,25 @@ $orders = $mysqli->query($sql);
 <style>
 /* ---------- RESET & BASE ---------- */
 * { box-sizing: border-box; margin:0; padding:0; }
-body { font-family:'Poppins', sans-serif; background:#f7f7f7; color:#333; line-height:1.6; }
+body {
+    font-family:'Poppins', sans-serif;
+    background:#f7f7f7;
+    color:#333;
+    line-height:1.6;
+}
+
+/* ---------- PALETTE ---------- */
+/* Vàng nâu chủ đạo */
+:root {
+    --gold:   #b8860b;
+    --gold-d: #a9740b;
+    --bg-alt: #fafafa;
+}
 
 /* ---------- HEADER ---------- */
 header{
-    background: linear-gradient(135deg,#ffecd2,#fcb69f);
-    color:#b85c00;
+    background: linear-gradient(135deg,#f9f1e7,#fff8f0);
+    color:var(--gold);
     padding:25px 20px;
     text-align:center;
     font-size:1.8rem;
@@ -53,7 +66,7 @@ header{
     display:inline-block;
     margin-bottom:20px;
     padding:10px 18px;
-    background:#ff7f50;
+    background:var(--gold);
     color:#fff;
     border-radius:8px;
     text-decoration:none;
@@ -61,7 +74,7 @@ header{
     transition:background .2s, transform .2s;
 }
 .back-home:hover{
-    background:#e76b3a;
+    background:var(--gold-d);
     transform:scale(1.03);
 }
 
@@ -77,22 +90,23 @@ th, td{
     text-align:center;
 }
 th{
-    background:#ff7f50;
+    background:var(--gold);
     color:#fff;
     font-weight:600;
     text-transform:uppercase;
     font-size:14px;
 }
-tr:nth-child(even) td{ background:#fafafa; }
-tr:hover td{ background:#fff3e0; transition:0.2s; }
+tr:nth-child(even) td{ background:var(--bg-alt); }
+tr:hover td{ background:#fff5e0; transition:0.2s; }
 
+/* ---------- LINK ---------- */
 a.detail-link{
-    color:#ff7f50;
+    color:var(--gold);
     text-decoration:none;
     font-weight:600;
     transition: color .2s;
 }
-a.detail-link:hover{ color:#e76b3a; text-decoration:underline; }
+a.detail-link:hover{ color:var(--gold-d); text-decoration:underline; }
 
 /* ---------- EMPTY MESSAGE ---------- */
 .empty{
@@ -108,6 +122,7 @@ a.detail-link:hover{ color:#e76b3a; text-decoration:underline; }
     .back-home{ padding:8px 14px; font-size:14px; }
 }
 </style>
+
 </head>
 <body>
 

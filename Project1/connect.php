@@ -7,8 +7,8 @@
      <?php
     $dbhost = "localhost";
     $dbuser = "root"; 
-    $dbpass = ""; // 
-    $dbname = "Project1";
+    $dbpass = "210103"; // 
+    $dbname = "project1";
     // taoj keets noi
     $mysqli  = new mysqli($dbhost,$dbuser,$dbpass,$dbname); 
  

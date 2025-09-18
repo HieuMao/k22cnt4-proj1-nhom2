@@ -44,10 +44,17 @@ body {
     line-height:1.6;
 }
 
+/* ---------- PALETTE ---------- */
+:root {
+    --gold:   #b8860b;
+    --gold-d: #a9740b;
+    --bg-alt: #fafafa;
+}
+
 /* ---------- HEADER ---------- */
 header {
-    background: linear-gradient(135deg,#ffecd2,#fcb69f);
-    color:#b85c00;
+    background: linear-gradient(135deg,#f9f1e7,#fff8f0);
+    color:var(--gold);
     text-align:center;
     padding:25px 20px;
     font-size:1.8rem;
@@ -73,7 +80,7 @@ header {
     font-size:16px;
 }
 .info b {
-    color:#b85c00;
+    color:var(--gold);
 }
 
 /* ---------- TABLE ---------- */
@@ -81,6 +88,7 @@ table {
     width:100%;
     border-collapse:collapse;
     margin-top:20px;
+    font-size:15px;
 }
 th, td {
     border:1px solid #eee;
@@ -88,15 +96,15 @@ th, td {
     text-align:center;
 }
 th {
-    background:#ff7f50;
+    background:var(--gold);
     color:#fff;
     font-weight:600;
+    text-transform:uppercase;
+    font-size:14px;
 }
-tr:nth-child(even) td {
-    background:#fafafa;
-}
+tr:nth-child(even) td { background:var(--bg-alt); }
 tr:hover td {
-    background:#fff3e0;
+    background:#fff5e0;
     transition:0.2s;
 }
 
@@ -104,7 +112,7 @@ tr:hover td {
 .back-btn {
     display:inline-block;
     margin-top:20px;
-    background:#ff7f50;
+    background:var(--gold);
     color:#fff;
     padding:10px 18px;
     border-radius:8px;
@@ -113,7 +121,7 @@ tr:hover td {
     transition:background .2s, transform .2s;
 }
 .back-btn:hover {
-    background:#e76b3a;
+    background:var(--gold-d);
     transform:scale(1.03);
 }
 
@@ -123,6 +131,7 @@ tr:hover td {
     .back-btn { padding:8px 16px; font-size:14px; }
 }
 </style>
+
 </head>
 <body>
 
