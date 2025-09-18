@@ -1,0 +1,231 @@
+/* ==== FONT & RESET ==== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fefefe;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ==== HEADER ==== */
+header {
+  background: linear-gradient(135deg,#f9f1e7,#fff8f0);
+  text-align: center;
+  padding: 50px 20px;
+  border-bottom: 2px solid #f1c40f;
+}
+header h1 {
+  font-size: 3rem;
+  color: #b8860b;
+  margin-bottom: 8px;
+}
+header p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ==== NAV ==== */
+nav {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 14px 10px;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: .3s;
+}
+nav a:hover,
+nav a.active {
+  background: #b8860b;
+  color: #fff;
+}
+.user-info { font-weight: 500; color: #444; margin-left: 10px; }
+.logout-btn {
+  background: #ff6b6b;
+  padding: 5px 12px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+/* ==== HERO ==== */
+.hero {
+  /* lớp tối + ảnh nền, gọn chiều cao */
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+              url('images/hero-bg.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+.hero-content p {
+  font-size: 1.2rem;
+  color: #f1f1f1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.btn-primary {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #d4a017;
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: .3s;
+}
+.btn-primary:hover {
+  background: #a9740b;
+  transform: translateY(-2px);
+}
+
+/* ==== INTRO ==== */
+.intro {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 50px 40px;
+  text-align: center;
+  background: linear-gradient(135deg,#fffaf0,#fff5e6);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.intro h2 {
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+  color: #b8860b;
+}
+.intro p { margin-bottom: 18px; }
+
+/* ==== FEATURED PRODUCTS ==== */
+.featured {
+  padding: 60px 20px;
+  text-align: center;
+}
+.featured h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #b8860b;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 20px;
+  transition: transform .2s;
+}
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.product-card:hover { transform: translateY(-4px); }
+
+/* ==== BENEFITS ==== */
+.benefits {
+  padding: 60px 20px;
+  text-align: center;
+  background: #fffaf0;
+}
+.benefits h2 {
+  font-size: 2rem;
+  color: #b8860b;
+  margin-bottom: 20px;
+}
+.benefits ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+.benefits li {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ==== NEWSLETTER ==== */
+.newsletter {
+  padding: 60px 20px;
+  text-align: center;
+}
+.newsletter h2 {
+  font-size: 2rem;
+  color: #b8860b;
+  margin-bottom: 25px;
+}
+.newsletter form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.newsletter input {
+  padding: 10px 15px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+.newsletter button {
+  padding: 10px 20px;
+  background: #d4a017;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+.newsletter button:hover { background: #a9740b; }
+.social {
+  margin-top: 20px;
+}
+.social a {
+  margin: 0 12px;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color .3s;
+}
+.social a:hover { color: #b8860b; }
+
+/* ==== FOOTER ==== */
+footer {
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  background: #f9f1e7;
+  color: #555;
+}
